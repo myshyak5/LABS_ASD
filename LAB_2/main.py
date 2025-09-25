@@ -29,7 +29,7 @@ def ApplyOperator(operators, values):
         values.append(left * right)
     elif operator == '/':
         if right == 0:
-            raise ValueError("Деление на ноль!")
+            raise ValueError("Деление на ноль")
         values.append(left / right)
 
 def EvaluateExpression(expression):
@@ -83,7 +83,7 @@ def EvaluateExpression(expression):
 
 def main():
     try:
-        expression = input("Введите математическое выражение: ").strip()
+        expression = input("Введите математическое выражение: ")
         result = EvaluateExpression(expression)
         print(f"Результат: {result}")        
     except ValueError as e:
