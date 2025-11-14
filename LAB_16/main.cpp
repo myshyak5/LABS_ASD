@@ -9,12 +9,8 @@ struct Node {
     Node(int value): data(value), left(nullptr), right(nullptr) {}
 };
 Node* treeString(const std::string& s, size_t& pos) {
-    while (pos < s.length() && s[pos] == ' ') {
-        pos++;
-    }
-    if (pos >= s.length()) {
-        return nullptr;
-    }
+    while (pos < s.length() && s[pos] == ' ') { pos++; }
+    if (pos >= s.length()) { return nullptr; }
     if (isdigit(s[pos])) {
         std::string numStr;
         while (pos < s.length() && isdigit(s[pos])) {
@@ -22,25 +18,15 @@ Node* treeString(const std::string& s, size_t& pos) {
             pos++;
         }
         Node* node = new Node(std::stoi(numStr));
-        while (pos < s.length() && s[pos] == ' ') {
-            pos++;
-        }
+        while (pos < s.length() && s[pos] == ' ') { pos++; }
         if (pos < s.length() && s[pos] == '(') {
             pos++;
             node->left = treeString(s, pos);
-            while (pos < s.length() && s[pos] == ' ') {
-                pos++;
-            }
-            if (pos < s.length() && s[pos] == ',') {
-                pos++;
-            }
+            while (pos < s.length() && s[pos] == ' ') { pos++; }
+            if (pos < s.length() && s[pos] == ',') { pos++; }
             node->right = treeString(s, pos);
-            while (pos < s.length() && s[pos] == ' ') {
-                pos++;
-            }
-            if (pos < s.length() && s[pos] == ')') {
-                pos++;
-            }
+            while (pos < s.length() && s[pos] == ' ') { pos++;}
+            if (pos < s.length() && s[pos] == ')') { pos++; }
         }
         return node;
     }
@@ -59,12 +45,8 @@ void preOrder(Node* root, std::vector<int>& result) {
         Node* current = stack.back();
         stack.pop_back();
         result.push_back(current->data);
-        if (current->right != nullptr) {
-            stack.push_back(current->right);
-        }
-        if (current->left != nullptr) {
-            stack.push_back(current->left);
-        }
+        if (current->right != nullptr) { stack.push_back(current->right); }
+        if (current->left != nullptr) { stack.push_back(current->left); }
     }
 }
 // Функция для освобождения памяти
