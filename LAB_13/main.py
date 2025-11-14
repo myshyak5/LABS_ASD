@@ -2,16 +2,19 @@ class HashTable:
     def __init__(self, size):
         self.size = size
         self.table = [None] * size
+
     def hash_function(self, key):
         total = 0
         for char in str(key):
             total += ord(char)
         return total % self.size
+    
     def insert(self, key, value):
         index = self.hash_function(key)
         while self.table[index] is not None and self.table[index][0] != key:
             index = (index + 1) % self.size
         self.table[index] = (key, value)
+
 def read_file(filename):
     with open(filename, 'r', encoding='utf-8') as file:
         text = file.read()
@@ -21,6 +24,7 @@ def read_file(filename):
         if clean_word:
             words.append(clean_word)
     return words
+
 def main():
     words = read_file("input.txt")  
     if not words:
@@ -39,5 +43,6 @@ def main():
         for i, item in enumerate(hash_table.table):
             if item is not None:
                 file.write(f"Ячейка {i}: '{item[0]}' -> {item[1]}\n")
+                
 if __name__ == "__main__":
     main()
